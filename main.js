@@ -1,6 +1,6 @@
 // Main Process
-const { app, BrowserWindow } = require("electron");
-
+const { app, BrowserWindow, Notification } = require("electron");
+const path = require("path");
 // creating window
 function createWindow() {
 	const win = new BrowserWindow(
@@ -22,7 +22,18 @@ function createWindow() {
 }
 
 // launching window when window is ready
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+	createWindow();
+	// const notification = new Notification({
+	// 	title: "hello World",
+	// 	body: "My test message",
+	// });
+	// send notification when the app is ready
+	// notification.show();
+	// path
+	const parsed = path.parse("/home/user/dir/file.txt");
+	console.log(parsed);
+});
 
 // prevent closing application from closing in mac
 // or
@@ -37,3 +48,6 @@ app.on("activate", () => {
 		createWindow();
 	}
 });
+
+// chromium -> web engine for rendering the UI, full chrome like web browser
+// v8 -> engine that provides capablities to execute, run, JS code in the browser
