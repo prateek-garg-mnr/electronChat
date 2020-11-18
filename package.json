@@ -12,5 +12,9 @@
   "devDependencies": {
     "electron": "^11.0.1",
     "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   }
 }
