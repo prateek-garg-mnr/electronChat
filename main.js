@@ -1,6 +1,6 @@
 // Main Process
-const { app, BrowserWindow, Notification } = require("electron");
-const path = require("path");
+const { app, BrowserWindow } = require("electron");
+
 // creating window
 function createWindow() {
 	const win = new BrowserWindow(
@@ -11,7 +11,13 @@ function createWindow() {
 			height: 600,
 			backgroundColor: "white",
 			webPreferences: {
-				nodeIntegration: true,
+				nodeIntegration: false,
+				// will sanitze js code
+				// TODO :- explain when application is initialized
+				worldSafeExecuteJavaScript: true,
+				// is a feature that ensures that both preload and electron
+				// logic runs in separate context
+				contextIsolation: true,
 			},
 		}
 	);
@@ -22,18 +28,7 @@ function createWindow() {
 }
 
 // launching window when window is ready
-app.whenReady().then(() => {
-	createWindow();
-	// const notification = new Notification({
-	// 	title: "hello World",
-	// 	body: "My test message",
-	// });
-	// send notification when the app is ready
-	// notification.show();
-	// path
-	const parsed = path.parse("/home/user/dir/file.txt");
-	console.log(parsed);
-});
+app.whenReady().then(createWindow);
 
 // prevent closing application from closing in mac
 // or
