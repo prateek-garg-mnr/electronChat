@@ -1,5 +1,5 @@
 // Main Process
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain, Notification } = require("electron");
 const path = require("path");
 
 //check the env. dev/prod
@@ -18,17 +18,19 @@ function createWindow() {
 				nodeIntegration: false,
 				// will sanitze js code
 				// TODO :- explain when application is initialized
-				worldSafeExecuteJavaScript: true,
+				// worldSafeExecuteJavaScript: true,
 				// is a feature that ensures that both preload and electron
 				// logic runs in separate context
 				contextIsolation: true,
+				preload: path.join(__dirname, "preload.js"),
 			},
 		}
 	);
 	// load html file in electron window
 	win.loadFile("index.html");
-	// to open web tools everytime we open this window
-	win.webContents.openDevTools();
+	// to open web tools everytime we open this window if env = dev
+
+	isDev && win.webContents.openDevTools();
 }
 
 // reload on change
@@ -40,6 +42,12 @@ if (isDev) {
 
 // launching window when window is ready
 app.whenReady().then(createWindow);
+
+
+// catching notification event
+ipcMain.on('notify', (e,message) => {
+	new Notification({title:'notification',body:message}).show()
+})
 
 // prevent closing application from closing in mac
 // or
