@@ -11,8 +11,8 @@ function createWindow() {
 		// Browser Windows <-  renderer process
 		// window configuration
 		{
-			width: 800,
-			height: 600,
+			width: 1600,
+			height: 1000,
 			backgroundColor: "white",
 			webPreferences: {
 				nodeIntegration: false,
