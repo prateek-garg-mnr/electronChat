@@ -21,3 +21,5 @@ export const listenToAuthChanges = () => (dispatch) => {
 	});
 };
 
+export const logout = () => (dispatch) =>
+	api.logout().then((_) => dispatch({ type: "AUTH_LOGOUT_SUCCESS" }));
