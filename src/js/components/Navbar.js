@@ -1,8 +1,34 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import { logout } from "../actions/auth";
 function Navbar() {
 	const history = useHistory();
+	const dispatch = useDispatch();
 
+	const renderButton = () => {
+		const button = useSelector(({ auth }) => {
+			if (auth.user) {
+				return (
+					<Link
+						onClick={() => {
+							dispatch(logout());
+						}}
+						className="btn btn-outline-success ml-2"
+					>
+						Logout
+					</Link>
+				);
+			} else {
+				return (
+					<Link to="/" className="btn btn-outline-success ml-2">
+						Login
+					</Link>
+				);
+			}
+		});
+		return button;;
+	};
 	return (
 		<div className="chat-navbar">
 			<nav className="chat-navbar-inner">
@@ -20,9 +46,7 @@ function Navbar() {
 				<div className="chat-navbar-inner-right">
 					<span className="logged-in-user">Hi User</span>
 
-					<Link to="/" className="btn btn-outline-success ml-2">
-						Login
-					</Link>
+					{renderButton()}
 				</div>
 			</nav>
 		</div>
