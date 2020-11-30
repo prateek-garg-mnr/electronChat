@@ -8,6 +8,13 @@ export const registerUser = (formData) => async (dispatch) => {
 	});
 };
 
+export const login = (formData) => async (dispatch) => {
+	console.log(formData);
+	const user = await api.login(formData);
+	console.log(user);
+	dispatch({ type: "AUTH_LOGIN_SUCCESS", user });
+};
+
 export const listenToAuthChanges = () => (dispatch) => {
 	dispatch({ type: "AUTH_ON_INIT" });
 	api.onAuthStateChange((authUser) => {
