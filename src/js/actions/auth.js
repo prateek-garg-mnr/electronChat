@@ -1,6 +1,7 @@
 import * as api from "../api/auth";
 
 export const registerUser = (formData) => async (dispatch) => {
+	dispatch({ type: "AUTH_REGISTER_INIT" });
 	const user = await api.register(formData);
 	dispatch({
 		type: "AUTH_REGISTER_SUCCESS",
@@ -9,17 +10,18 @@ export const registerUser = (formData) => async (dispatch) => {
 };
 
 export const login = (formData) => async (dispatch) => {
-	console.log(formData);
+	dispatch({ type: "AUTH_LOGIN_INIT" });
 	const user = await api.login(formData);
-	console.log(user);
 	dispatch({ type: "AUTH_LOGIN_SUCCESS", user });
 };
 
 export const listenToAuthChanges = () => (dispatch) => {
 	dispatch({ type: "AUTH_ON_INIT" });
-	api.onAuthStateChange((authUser) => {
+	api.onAuthStateChange(async (authUser) => {
 		if (authUser) {
-			dispatch({ type: "AUTH_ON_SUCCESS", user: authUser });
+			const userProfile = await api.getUserProfile(authUser.uid);
+			console.log('user profile',userProfile);
+			dispatch({ type: "AUTH_ON_SUCCESS", user: userProfile });
 			console.log("we are authenticated ");
 		} else {
 			dispatch({ type: "AUTH_ON_ERROR", user: authUser });
