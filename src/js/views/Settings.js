@@ -1,7 +1,8 @@
 import React from "react";
-
+import BaseLayout from "../layouts/Base"
 function Settings() {
 	return (
+		<BaseLayout>
 		<div className="centered-view">
 			<div className="centered-container">
 				<form className="centered-container-form">
@@ -39,7 +40,9 @@ function Settings() {
 					</div>
 				</form>
 			</div>
-		</div>
+			</div>
+		</BaseLayout>
+			
 	);
 }
 
