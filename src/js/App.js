@@ -1,13 +1,36 @@
 import React, { useEffect } from "react";
-import { Provider } from "react-redux";
+import { Provider, useSelector, useDispatch } from "react-redux";
 import Home from "./views/Home";
 import Chat from "./views/Chat";
-import Navbar from "../js/components/Navbar";
 import Settings from "../js/views/Settings";
 import Welcome from "./views/Welcome";
 import configureStore from "../js/store";
 import { listenToAuthChanges } from "../js/actions/auth";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import {
+	HashRouter as Router,
+	Switch,
+	Route,
+	Redirect,
+} from "react-router-dom";
+
+function AuthRoute({ children, ...rest }) {
+	const user = useSelector(({ auth }) => auth.user);
+	// check where there is only one children?
+	const onlyChild = React.Children.only(children);
+	return (
+		<Route
+			{...rest}
+			render={(props) =>
+				user ? (
+					React.cloneElement(onlyChild, { ...rest, ...props })
+				) : (
+					<Redirect to="/" />
+				)
+			}
+		/>
+	);
+}
+
 function App() {
 	const store = configureStore();
 	useEffect(() => {
@@ -16,21 +39,20 @@ function App() {
 	return (
 		<Provider store={store}>
 			<Router>
-				<Navbar />
 				<div className="content-wrapper">
 					<Switch>
 						<Route path="/" exact>
 							<Welcome />
 						</Route>
-						<Route path="/settings">
+						<AuthRoute path="/settings">
 							<Settings />
-						</Route>
-						<Route path="/chat/:id">
+						</AuthRoute>
+						<AuthRoute path="/chat/:id">
 							<Chat />
-						</Route>
-						<Route path="/home">
+						</AuthRoute>
+						<AuthRoute path="/home">
 							<Home />
-						</Route>
+						</AuthRoute>
 					</Switch>
 				</div>
 			</Router>
