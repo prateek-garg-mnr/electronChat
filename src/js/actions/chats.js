@@ -1,4 +1,6 @@
+import { getUserProfile } from "../api/auth";
 import * as api from "../api/chats";
+
 import db from "../db/firestore";
 export const fetchChats = () => async (dispatch, getState) => {
 	const { user } = getState().auth;
@@ -50,3 +52,18 @@ export const createChat = (formData, userId) => async (dispatch) => {
 		return chatId;
 	} catch (e) {}
 };
+
+
+export const subscribeToChat = (chatId) => (dispatch) =>
+	api.subscribeToChat(chatId, async (chat) => {
+		const joinedUsers = await Promise.all(
+			chat.joinedUsers.map(async (userRef) => {
+				const userSnapshot = await userRef.get();
+				return userSnapshot.data();
+			})
+		);
+
+		chat.joinedUsers = joinedUsers;
+		console.log("chat", chat);
+		dispatch({ type: "CHATS_SET_ACTIVE_CHAT", chat });
+	});
