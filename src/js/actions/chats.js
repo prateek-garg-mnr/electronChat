@@ -29,7 +29,7 @@ export const fetchChats = () => async (dispatch, getState) => {
 
 export const joinChat = (chat, uid) => (dispatch) => {
 	api.joinChat(uid, chat.id).then((_) => {
-		dispatch({ type: "CHATS_JOIN_SUCCESS" });
+		dispatch({ type: "CHATS_JOIN_SUCCESS", chat });
 	});
 };
 
@@ -46,7 +46,7 @@ export const createChat = (formData, userId) => async (dispatch) => {
 		dispatch({ type: "CHAT_CREEATE_SUCCESS" });
 		// join chat
 		await api.joinChat(userId, chatId);
-		dispatch({ type: "CHATS_JOIN_SUCCESS" });
+		dispatch({ type: "CHATS_JOIN_SUCCESS", chat: { ...newChat, id: chatId } });
 		return chatId;
 	} catch (e) {}
 };
