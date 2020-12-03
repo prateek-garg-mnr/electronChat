@@ -11,16 +11,16 @@ function Navbar() {
 			if (auth.user) {
 				return (
 					<>
-						<img src={ auth.user.avatar} className="avatar mr-3"></img>
-						<span className="logged-in-user">Hi { auth.user.username}</span>
-					<a
-						onClick={() => {
-							dispatch(logout());
-						}}
-						className="btn btn-outline-danger ml-4"
-					>
-						Logout
-					</a>
+						<img src={auth.user.avatar} className="avatar mr-3"></img>
+						<span className="logged-in-user">Hi {auth.user.username}</span>
+						<a
+							onClick={() => {
+								dispatch(logout());
+							}}
+							className="btn btn-outline-danger ml-4"
+						>
+							Logout
+						</a>
 					</>
 				);
 			} else {
@@ -31,7 +31,7 @@ function Navbar() {
 				);
 			}
 		});
-		return button;;
+		return button;
 	};
 	return (
 		<div className="chat-navbar">
@@ -47,9 +47,7 @@ function Navbar() {
 						Settings
 					</Link>
 				</div>
-				<div className="chat-navbar-inner-right">
-					{renderButton()}
-				</div>
+				<div className="chat-navbar-inner-right">{renderButton()}</div>
 			</nav>
 		</div>
 	);

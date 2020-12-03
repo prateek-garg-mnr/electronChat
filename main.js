@@ -35,19 +35,18 @@ function createWindow() {
 
 // reload on change
 if (isDev) {
-	require('electron-reload')(__dirname, {
-		electron:path.join(__dirname,'node_modules','.bin','electron')
-	})
+	require("electron-reload")(__dirname, {
+		electron: path.join(__dirname, "node_modules", ".bin", "electron"),
+	});
 }
 
 // launching window when window is ready
 app.whenReady().then(createWindow);
 
-
 // catching notification event
-ipcMain.on('notify', (e,message) => {
-	new Notification({title:'notification',body:message}).show()
-})
+ipcMain.on("notify", (e, message) => {
+	new Notification({ title: "notification", body: message }).show();
+});
 
 // prevent closing application from closing in mac
 // or
@@ -68,4 +67,3 @@ app.on("activate", () => {
 
 // webpack -> module builde, main purpose is to bundle js files for usage in browser
 // Babel -> is a js compiler.
-

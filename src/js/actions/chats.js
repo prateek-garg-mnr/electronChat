@@ -53,7 +53,6 @@ export const createChat = (formData, userId) => async (dispatch) => {
 	} catch (e) {}
 };
 
-
 export const subscribeToChat = (chatId) => (dispatch) =>
 	api.subscribeToChat(chatId, async (chat) => {
 		const joinedUsers = await Promise.all(

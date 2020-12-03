@@ -9,7 +9,7 @@ export const registerUser = (formData) => async (dispatch) => {
 			user,
 		});
 	} catch (error) {
-		return dispatch({  type:  "AUTH_REGISTER_ERROR",  error  });;
+		return dispatch({ type: "AUTH_REGISTER_ERROR", error });
 	}
 };
 
@@ -19,7 +19,7 @@ export const login = (formData) => async (dispatch) => {
 		const user = await api.login(formData);
 		return dispatch({ type: "AUTH_LOGIN_SUCCESS", user });
 	} catch (error) {
-		return dispatch({  type:  "AUTH_LOGIN_ERROR",  error });;
+		return dispatch({ type: "AUTH_LOGIN_ERROR", error });
 	}
 };
 

@@ -6,7 +6,7 @@ function RegisterForm() {
 	const { register, handleSubmit } = useForm();
 	const dispatch = useDispatch();
 	const error = useSelector(({ auth }) => auth.register.error);
-	
+
 	const onSubmit = (registerData) => {
 		dispatch(registerUser(registerData));
 	};

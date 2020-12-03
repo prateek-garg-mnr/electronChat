@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { joinChat } from "../actions/chats";
 
 function AvailableChats({ chats }) {
-
 	const user = useSelector(({ auth }) => auth.user);
 	const dispatch = useDispatch();
 
@@ -17,7 +16,6 @@ function AvailableChats({ chats }) {
 			dispatch(joinChat(chat, user.uid));
 		}
 	};
-
 
 	return (
 		<div className="container-fluid">

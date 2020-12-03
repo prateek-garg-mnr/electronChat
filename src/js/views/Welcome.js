@@ -8,11 +8,11 @@ function Welcome() {
 	const [isLoginView, setIsLogin] = useState(true);
 	const user = useSelector(({ auth }) => auth.user);
 	const isChecking = useSelector(({ auth }) => auth.isChecking);
-	
+
 	const optInText = isLoginView
 		? ["Need an account?", "Register"]
 		: ["Already Registered", "Login"];
-	
+
 	if (isChecking) {
 		return <LoadingView />;
 	}
@@ -20,7 +20,7 @@ function Welcome() {
 	if (user) {
 		return <Redirect to="/home" />;
 	}
-	
+
 	return (
 		<div className="centered-view">
 			<div className="centered-container">

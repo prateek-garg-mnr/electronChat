@@ -5,13 +5,13 @@ import { useHistory } from "react-router-dom";
 import BaseLayout from "../layouts/Base";
 import { createChat } from "../actions/chats";
 function ChatCreate() {
-    const { register, handleSubmit } = useForm();
-    const dispatch = useDispatch();
-		const user = useSelector(({ auth }) => auth.user);
-		const history = useHistory();
-    const onSubmit = (data) => {
-        dispatch(createChat(data, user.uid)).then((_) => history.push("/home"));
-    };
+	const { register, handleSubmit } = useForm();
+	const dispatch = useDispatch();
+	const user = useSelector(({ auth }) => auth.user);
+	const history = useHistory();
+	const onSubmit = (data) => {
+		dispatch(createChat(data, user.uid)).then((_) => history.push("/home"));
+	};
 	return (
 		<BaseLayout>
 			<div className="centered-view">
