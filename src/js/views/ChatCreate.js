@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import BaseLayout from "../layouts/Base";
+import { createChat } from "../actions/chats";
 function ChatCreate() {
-	const { register, handleSubmit } = useForm();
-	const onSubmit = (data) => {
-		alert(JSON.stringify(data));
-	};
+    const { register, handleSubmit } = useForm();
+    const dispatch = useDispatch();
+		const user = useSelector(({ auth }) => auth.user);
+		const history = useHistory();
+    const onSubmit = (data) => {
+        dispatch(createChat(data, user.uid)).then((_) => history.push("/home"));
+    };
 	return (
 		<BaseLayout>
 			<div className="centered-view">
