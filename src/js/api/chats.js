@@ -31,3 +31,13 @@ export const joinChat = async (userId, chatId) => {
 		joinedUsers: firebase.firestore.FieldValue.arrayUnion(useRef),
 	});
 };
+
+export const subscribeToChat = (chatId, onSubscribe) => {
+	db.collection("chats")
+		.doc(chatId)
+		.onSnapshot((snapshot) => {
+			const chat = { id: snapshot.id, ...snapshot.data() };
+			console.log(chat);
+			onSubscribe(chat);
+		});
+};
