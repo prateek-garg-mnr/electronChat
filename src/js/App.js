@@ -4,6 +4,7 @@ import Home from "./views/Home";
 import Chat from "./views/Chat";
 import Settings from "../js/views/Settings";
 import Welcome from "./views/Welcome";
+import ChatCreate from "./views/ChatCreate";
 import configureStore from "../js/store";
 import { listenToAuthChanges } from "../js/actions/auth";
 import {
@@ -46,6 +47,9 @@ function App() {
 						</Route>
 						<AuthRoute path="/settings">
 							<Settings />
+						</AuthRoute>
+						<AuthRoute path="/chatCreate">
+							<ChatCreate />
 						</AuthRoute>
 						<AuthRoute path="/chat/:id">
 							<Chat />
