@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import BaseLayout from "../layouts/Base";
 function Home() {
 	const dispatch = useDispatch();
-	const chats = useSelector(({ chats }) => chats.items);
+	const joinedChats = useSelector(({ chats }) => chats.joined);
+	const availableChats = useSelector(({ chats }) => chats.available);
 	useEffect(() => {
 		dispatch(fetchChats());
 	}, [dispatch]);
@@ -16,7 +17,7 @@ function Home() {
 		<BaseLayout>
 			<div className="row no-gutters fh">
 				<div className="col-3 fh">
-					<JoinedChats chats={chats} />
+					<JoinedChats chats={joinedChats} />
 				</div>
 				<div className="col-9 fh">
 					<ViewTitle text="Choose Your Channel">
@@ -24,7 +25,7 @@ function Home() {
 							New
 						</Link>
 					</ViewTitle>
-					<AvailableChats chats={chats} />
+					<AvailableChats chats={availableChats} />
 				</div>
 			</div>
 		</BaseLayout>
