@@ -36,4 +36,7 @@ export const listenToAuthChanges = () => (dispatch) => {
 };
 
 export const logout = () => (dispatch) =>
-	api.logout().then((_) => dispatch({ type: "AUTH_LOGOUT_SUCCESS" }));
+	api.logout().then((_) => {
+		dispatch({ type: "CHAT_FETCH_RESTART" });
+		dispatch({ type: "AUTH_LOGOUT_SUCCESS" });
+	});
