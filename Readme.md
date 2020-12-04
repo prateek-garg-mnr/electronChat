@@ -10,6 +10,10 @@
 
 1. npm start
 
+### To Build React 
+
+1. npm run watch
+
 ### DMG file (Mac)
 https://drive.google.com/file/d/1ZiyuKaGmsmZHnpGNKqL3u-WpMfAnbn_W/view?usp=sharing
 
