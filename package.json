@@ -8,11 +8,11 @@
     "start": "electron .",
     "watch": "webpack --config webpack.common.js --watch",
     "build": "webpack --config webpack.prod.js",
-    "pack":"electron-builder --dir",
-    "dist":"electron-builder",
-    "make:linux":"electron-builder --linux",
-    "make:macos":"electron-builder --mac",
-    "make:windows":"electron-builder --win --x64"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "make:linux": "electron-builder --linux",
+    "make:macos": "electron-builder --mac",
+    "make:windows": "electron-builder --win --x64"
   },
   "author": "",
   "license": "ISC",
@@ -66,6 +66,7 @@
     "@babel/core": "^7.12.7",
     "dotenv-webpack": "^5.1.0",
     "electron": "^11.0.1",
+    "electron-builder": "^22.9.1",
     "electron-reload": "^1.5.0",
     "nodemon": "^2.0.6"
   },
@@ -76,7 +77,6 @@
     "babel-loader": "^8.2.1",
     "bootstrap": "^4.5.2",
     "css-loader": "^5.0.1",
-    "electron-builder": "^22.9.1",
     "firebase": "^8.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
