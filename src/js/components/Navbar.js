@@ -38,14 +38,14 @@ function Navbar() {
 			<nav className="chat-navbar-inner">
 				<div className="chat-navbar-inner-left">
 					<button
-						onClick={() => history.goBack()}
+						onClick={() => location.reload()}
 						className="btn btn-outline-primary"
 					>
-						Back
+						Home
 					</button>
-					<Link to="/settings" className="btn btn-outline-success ml-2">
+					{/* <Link to="/settings" className="btn btn-outline-success ml-2">
 						Settings
-					</Link>
+					</Link> */}
 				</div>
 				<div className="chat-navbar-inner-right">{renderButton()}</div>
 			</nav>
