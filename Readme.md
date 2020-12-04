@@ -17,5 +17,5 @@
 ### DMG file (Mac)
 https://drive.google.com/file/d/1ZiyuKaGmsmZHnpGNKqL3u-WpMfAnbn_W/view?usp=sharing
 
-
+*while registration and creating chat provide link to images you want to use*
 
