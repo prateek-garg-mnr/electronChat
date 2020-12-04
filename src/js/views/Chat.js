@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ChatUsersList from "../components/ChatUsersList";
@@ -6,6 +6,8 @@ import ChatMessagesList from "../components/ChatMessagesList";
 import ViewTitle from "../components/shared/ViewTitle";
 import BaseLayout from "../layouts/Base";
 import { subscribeToChat } from "../actions/chats";
+import Messenger from "../components/Messenger";
+import { sendChatMessage } from "../actions/chats";
 
 function Chat() {
 	const { id } = useParams();
@@ -21,6 +23,13 @@ function Chat() {
 		};
 	}, []);
 
+	const sendMessage = useCallback(
+		(message) => {
+			dispatch(sendChatMessage(message, id));
+		},
+		[id]
+	);
+
 	return (
 		<BaseLayout>
 			<div className="row no-gutters fh">
@@ -32,6 +41,7 @@ function Chat() {
 						text={`Joined Channel: ${activeChat ? activeChat.name : ""}`}
 					/>
 					<ChatMessagesList />
+					<Messenger onSubmit={sendMessage} />
 				</div>
 			</div>
 		</BaseLayout>
