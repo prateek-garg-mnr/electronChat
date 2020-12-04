@@ -1,9 +1,11 @@
 // Main Process
-const { app, BrowserWindow, ipcMain, Notification } = require("electron");
+const { app, BrowserWindow, ipcMain, Notification, Menu } = require("electron");
 const path = require("path");
-
 //check the env. dev/prod
 const isDev = !app.isPackaged;
+
+// dock icon 
+const dockIcon = path.join(__dirname,'assets','images','icons8-chat-48.png')
 
 // creating window
 function createWindow() {
@@ -40,8 +42,19 @@ if (isDev) {
 	});
 }
 
+if (process.platform === "darwin") {
+	app.dock.setIcon(dockIcon);
+}
+
 // launching window when window is ready
-app.whenReady().then(createWindow);
+const tray = null;
+app.whenReady().then(() => {
+	// settingup menu
+	const template = requrie("./utils/Menu").createTemplate(app);
+	const menu = Menu.buildFromTemplate(template);
+	Menu.setApplicationMenu(menu);
+	createWindow;
+});
 
 // catching notification event
 ipcMain.on("notify", (e, message) => {
