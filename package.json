@@ -7,10 +7,61 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
     "watch": "webpack --config webpack.common.js --watch",
-    "build":"webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "pack":"electron-builder --dir",
+    "dist":"electron-builder",
+    "make:linux":"electron-builder --linux",
+    "make:macos":"electron-builder --mac",
+    "make:windows":"electron-builder --win --x64"
   },
   "author": "",
   "license": "ISC",
+  "build": {
+    "productName": "ElectronPOC",
+    "appId": "com.mnr.electronpoc",
+    "files": [
+      "build/**/*",
+      "assets/**/*",
+      "utils/**/*",
+      "index.html",
+      "main.js",
+      "preload.js"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "assets/images/react_app_logo.png",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 430,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "icon": "assets/images/react_app_logo.png",
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "AppImage"
+      ],
+      "category": "Development"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.12.7",
     "dotenv-webpack": "^5.1.0",
@@ -25,6 +76,7 @@
     "babel-loader": "^8.2.1",
     "bootstrap": "^4.5.2",
     "css-loader": "^5.0.1",
+    "electron-builder": "^22.9.1",
     "firebase": "^8.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
