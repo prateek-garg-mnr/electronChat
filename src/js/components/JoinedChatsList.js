@@ -6,7 +6,7 @@ function JoinedChats({ chats }) {
 
 	return (
 		<div className="list-container">
-			<ChatSearch />
+			{/* <ChatSearch /> */}
 			<ul className="items">
 				{chats.map((chat) => {
 					return (
@@ -17,7 +17,7 @@ function JoinedChats({ chats }) {
 						>
 							<div className="item-status">
 								<img src={chat.image} alt="Retail Admin" />
-								<span className="status online"></span>
+								{/* <span className="status online"></span> */}
 							</div>
 							<p className="name-time">
 								<span className="name mr-2">{chat.name}</span>
