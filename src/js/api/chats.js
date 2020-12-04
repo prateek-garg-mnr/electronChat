@@ -41,3 +41,12 @@ export const subscribeToChat = (chatId, onSubscribe) => {
 			onSubscribe(chat);
 		});
 };
+
+
+export const sendChatMessage = (message, chatId) =>
+	db
+		.collection("chats")
+		.doc(chatId)
+		.collection("messages")
+		.doc(message.timestamp)
+		.set(message);
